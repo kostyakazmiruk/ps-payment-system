@@ -5,6 +5,7 @@ import { CreatePaymentMethodCommand } from '../../application/commands/create-pa
 import { GetPaymentMethodQuery } from '../../application/queries/get-payment-method.handler';
 import { GetPaymentMethodsQuery } from '../../application/queries/get-payment-methods.handler';
 import { ProcessPaymentCommand } from '../../application/commands/process-payment.command';
+import { v4 as uuidv4 } from 'uuid';
 
 @Controller()
 export class PaymentMethodController {
@@ -16,7 +17,7 @@ export class PaymentMethodController {
   @MessagePattern('create.payment.method')
   async createPaymentMethod(@Payload() data: any) {
     const command = new CreatePaymentMethodCommand(
-      data.userId,
+      data.userId || uuidv4(),
       data.type,
       data.cardNumber,
       data.expiryMonth,

@@ -6,6 +6,7 @@ import {
   PaymentMethod,
   PaymentMethodType,
 } from '../../domain/entities/payment-method.entity';
+import { v4 as uuidv4 } from 'uuid';
 
 @CommandHandler(CreatePaymentMethodCommand)
 export class CreatePaymentMethodHandler
